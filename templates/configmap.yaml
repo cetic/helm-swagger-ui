@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "swagger-ui.fullname" . }}
+  labels:
+    app: {{ template "swagger-ui.name" . }}
+    chart: {{ template "swagger-ui.chart" . }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+data:
+  conf.json: {{ .Files.Get (printf "%s" .Values.swaggerui.jsonPath) | toJson | indent 4}}

@@ -1,0 +1,14 @@
+name: swagger-ui
+version: 0.1.0
+appVersion: 3.23.10
+description: Swagger is an open-source software framework backed by a large ecosystem of tools that helps developers design, build, document, and consume RESTful Web services.
+keywords:
+  - swagger
+  - ui
+  - RESTful
+home: https://swagger.io
+icon: https://transfer.legal/wp-content/uploads/2016/12/logo-swagger.png
+source:
+  - https://github.com/cetic/helm-chart
+maintainers:
+  - name: tomsellelsagh

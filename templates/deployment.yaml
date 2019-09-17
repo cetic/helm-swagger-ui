@@ -1,0 +1,43 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "swagger-ui.fullname" . }}
+  labels:
+    app: {{ template "swagger-ui.name" . }}
+    chart: {{ template "swagger-ui.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "swagger-ui.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: SWAGGER_JSON
+            value: /api-doc/openapi.json
+          volumeMounts:
+          - mountPath: /api-doc
+            name: swagger-config
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.livenessProbe.httpGet.port }}
+          ports:
+          - name: http
+            containerPort: {{ .Values.service.port }}
+            protocol: TCP
+            targetPort: http
+      volumes:
+        - name: swagger-config
+          configMap:
+            name: {{ template "swagger-ui.fullname" . }}
+            items:
+            - key: conf.json
+              path: openapi.json
