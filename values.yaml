@@ -7,7 +7,11 @@ image:
   pullPolicy: IfNotPresent
 
 swaggerui :
-  jsonPath : openapi.json
+  jsonPath : ""
+  jsonUrl : https://raw.githubusercontent.com/cetic/helm-swagger-ui/develop/openapi.json
+  server :
+    url: http://www.google.be
+    description: "helm-online"
 
 ## Expose the swagger-ui service and
 ## Provides options for the service so chart users have the full choice

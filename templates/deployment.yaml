@@ -20,12 +20,16 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-          - name: SWAGGER_JSON
-            value: /api-doc/openapi.json
+          {{- if .Values.swaggerui.jsonPath }}
           volumeMounts:
           - mountPath: /api-doc
             name: swagger-config
+          {{ else }}
+          command: ["/bin/sh","-c"]
+          args : {{ (printf "[\"mkdir /api-doc && wget %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }} {{ end }}
+          env:
+          - name: SWAGGER_JSON
+            value: /api-doc/openapi.json
           livenessProbe:
             tcpSocket:
               port: {{ .Values.livenessProbe.httpGet.port }}
@@ -34,6 +38,7 @@ spec:
             containerPort: {{ .Values.service.port }}
             protocol: TCP
             targetPort: http
+      {{- if .Values.swaggerui.jsonPath }}
       volumes:
         - name: swagger-config
           configMap:
@@ -41,3 +46,4 @@ spec:
             items:
             - key: conf.json
               path: openapi.json
+      {{ end }}
