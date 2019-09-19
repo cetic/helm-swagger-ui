@@ -6,6 +6,9 @@ image:
   tag: v3.23.10
   pullPolicy: IfNotPresent
 
+## Used to provide the location of the openapi.json file.
+## If jsonPath is empty the chart try to get a json file at the jsonUrl address. 
+## The server fields have to use to add a custom server.
 swaggerui :
   jsonPath : ""
   jsonUrl : https://raw.githubusercontent.com/cetic/helm-swagger-ui/develop/openapi.json
