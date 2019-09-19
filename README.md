@@ -32,7 +32,6 @@ The following items can be set via `--set` flag during installation or configure
 - **NodePort**: Exposes the service on each Node’s IP at a static port (the NodePort). You’ll be able to contact the NodePort service, from outside the cluster, by requesting `NodeIP:NodePort`.
 - **LoadBalancer**: Exposes the service externally using a cloud provider’s load balancer.
 
-
 ### Install the chart
 
 Install the swagger-ui helm chart with a release name `my-release`:
@@ -56,32 +55,37 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | Parameter                                                                   | Description                                                                                                        | Default                         |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------| ------------------------------- |
 | **Image**                                                                   |
-| `image.repository`                                                          | swagger-ui Image name                                                                                                 | `swaggerapi/swagger-ui`                |
-| `image.tag`                                                                 | swagger-ui Image tag                                                                                                  | `v3.23.10`                          |
-| `image.pullPolicy`                                                          | swagger-ui Image pull policy                                                                                          | `IfNotPresent`                  |
-| **swagger-ui**                                                                 |
-| `swagger-ui.jsonPath`                                                          | location of the configuration json file file                                                                                                 | `""`          |
-| `swagger-ui.jsonUrl`                                                          | location of the configuration json file file                                                                                                 | `https://raw.githubusercontent.com/cetic/helm-swagger-ui/develop/openapi.json`          |
-| `swagger-ui.server.url`                                                          | Url of a custom server                                                                            | `""`          |
-| `swagger-ui.server.description`                                                          | descripton of a custom server                                                                                                  | `"helm-online"`          |
+| `image.repository`                                                          | swagger-ui Image name                                                                                              | `swaggerapi/swagger-ui`         |
+| `image.tag`                                                                 | swagger-ui Image tag                                                                                               | `v3.23.10`                      |
+| `image.pullPolicy`                                                          | swagger-ui Image pull policy                                                                                       | `IfNotPresent`                  |
+| **swagger-ui**                                                              |
+| `swagger-ui.jsonPath`                                                       | location of the configuration json file file                                                                       | `""`                            |
+| `swagger-ui.jsonUrl`                                                        | location of the configuration json file file                                                                       | `http://petstore.swagger.io/v2/swagger.json` |
+| `swagger-ui.server.url`                                                     | Url of a custom server                                                                                             | `"http://www.google.be"`        |
+| `swagger-ui.server.description`                                             | descripton of a custom server                                                                                      | `"helm-online"`                 |
 | **Service**                                                                 |
-| `service.type`                                                              | Type of service for swagger-ui frontend                                                                               | `NodePort`                  |
-| `service.port`                                                              | Port to expose service                                                                                             | `8080`                            |
-| `service.nodePort`                                                           | Port where the service is reachable                                                       | `30245`                           |
+| `service.type`                                                              | Type of service for swagger-ui frontend                                                                            | `NodePort`                      |
+| `service.port`                                                              | Port to expose service                                                                                             | `8080`                          |
+| `service.nodePort`                                                          | Port where the service is reachable                                                                                | `30245`                         |
 | `service.loadBalancerIP`                                                    | LoadBalancerIP if service type is `LoadBalancer`                                                                   | `nil`                           |
 | `service.loadBalancerSourceRanges`                                          | Address that are allowed when svc is `LoadBalancer`                                                                | `[]`                            |
 | `service.annotations`                                                       | Service annotations                                                                                                | `{}`                            |
+| **Ingress**                                                                 |
+| `ingress.enabled`                                                           | Enables Ingress                                                                                                    | `false`                         |
+| `ingress.annotations`                                                       | Ingress annotations                                                                                                | `{}`                            |
+| `ingress.path`                                                              | Path to access frontend                                                                                            | `/`                             |
+| `ingress.hosts`                                                             | Ingress hosts                                                                                                      | `[]`                            |
+| `ingress.tls`                                                               | Ingress TLS configuration                                                                                          | `[]`                            |
 | **ReadinessProbe**                                                          |
 | `readinessProbe`                                                            | Rediness Probe settings                                                                                            | `nil`                           |
-| **LivenessProbe**                                                           |
-| `livenessProbe.httpGet.path`                                                             | Liveness Probe settings                                                                                            | `/`                           |
-| `livenessProbe.httpGet.port`                                                             | Liveness Probe settings                                                                                            | `http`                           |
-| `livenessProbe.initialDelaySeconds`                                                             | Liveness Probe settings                                                                                            | `60`                           |
-| `livenessProbe.periodSeconds`                                                             | Liveness Probe settings                                                                                            | `30`                           |
-| `livenessProbe.timeoutSeconds`                                                             | Liveness Probe settings                                                                                            | `10`                           |
+| **LivenessProbe**                                                           | 
+| `livenessProbe.httpGet.path`                                                | Liveness Probe settings                                                                                            | `/`                             |
+| `livenessProbe.httpGet.port`                                                | Liveness Probe settings                                                                                            | `http`                          |
+| `livenessProbe.initialDelaySeconds`                                         | Liveness Probe settings                                                                                            | `60`                            |
+| `livenessProbe.periodSeconds`                                               | Liveness Probe settings                                                                                            | `30`                            |
+| `livenessProbe.timeoutSeconds`                                              | Liveness Probe settings                                                                                            | `10`                            |
 | **Resources**                                                               |
 | `resources`                                                                 | CPU/Memory resource requests/limits                                                                                | `{}`                            |
-
 
 ## Contributing
 
