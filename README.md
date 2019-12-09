@@ -56,7 +56,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------| ------------------------------- |
 | **Image**                                                                   |
 | `image.repository`                                                          | swagger-ui Image name                                                                                              | `swaggerapi/swagger-ui`         |
-| `image.tag`                                                                 | swagger-ui Image tag                                                                                               | `v3.23.10`                      |
+| `image.tag`                                                                 | swagger-ui Image tag                                                                                               | `v3.24.3`                      |
 | `image.pullPolicy`                                                          | swagger-ui Image pull policy                                                                                       | `IfNotPresent`                  |
 | **swagger-ui**                                                              |
 | `swagger-ui.jsonPath`                                                       | location of the configuration json file file                                                                       | `""`                            |
@@ -66,7 +66,6 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | **Service**                                                                 |
 | `service.type`                                                              | Type of service for swagger-ui frontend                                                                            | `NodePort`                      |
 | `service.port`                                                              | Port to expose service                                                                                             | `8080`                          |
-| `service.nodePort`                                                          | Port where the service is reachable                                                                                | `30245`                         |
 | `service.loadBalancerIP`                                                    | LoadBalancerIP if service type is `LoadBalancer`                                                                   | `nil`                           |
 | `service.loadBalancerSourceRanges`                                          | Address that are allowed when svc is `LoadBalancer`                                                                | `[]`                            |
 | `service.annotations`                                                       | Service annotations                                                                                                | `{}`                            |
