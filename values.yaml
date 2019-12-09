@@ -3,7 +3,7 @@
 ##
 image:
   repository: swaggerapi/swagger-ui
-  tag: v3.23.10
+  tag: v3.24.3
   pullPolicy: IfNotPresent
 
 ## Used to provide the location of the openapi.json file.
@@ -29,7 +29,6 @@ service:
   loadBalancerSourceRanges: []
   type: NodePort
   port: 8080
-  nodePort: 30245
 
 ## Set the LoadBalancer service type to internal only.
 ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
@@ -61,6 +60,7 @@ ingress:
 #  initialDelaySeconds: 60
 #  periodSeconds: 15
 #  timeoutSeconds: 10
+
 livenessProbe:
   httpGet:
     path: /

@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "swagger-ui.fullname" . }}
@@ -10,6 +10,10 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "swagger-ui.name" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
@@ -37,7 +41,6 @@ spec:
           - name: http
             containerPort: {{ .Values.service.port }}
             protocol: TCP
-            targetPort: http
       {{- if .Values.swaggerui.jsonPath }}
       volumes:
         - name: swagger-config
