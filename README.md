@@ -63,6 +63,9 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `swagger-ui.jsonUrl`                                                        | location of the configuration json file file                                                                       | `http://petstore.swagger.io/v2/swagger.json` |
 | `swagger-ui.server.url`                                                     | Url of a custom server                                                                                             | `"http://www.google.be"`        |
 | `swagger-ui.server.description`                                             | descripton of a custom server                                                                                      | `"helm-online"`                 |
+| **Deployment**                                                              |
+| `deployment.replicas`                                                       | Number of replicas                                                                                                 | `1`                             |
+| `deployment.extraEnv`                                                       | Additional environment variable                                                                                    | ``                              |
 | **Service**                                                                 |
 | `service.type`                                                              | Type of service for swagger-ui frontend                                                                            | `NodePort`                      |
 | `service.port`                                                              | Port to expose service                                                                                             | `8080`                          |
@@ -78,7 +81,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `ingress.tls`                                                               | Ingress TLS configuration                                                                                          | `[]`                            |
 | **ReadinessProbe**                                                          |
 | `readinessProbe`                                                            | Rediness Probe settings                                                                                            | `nil`                           |
-| **LivenessProbe**                                                           | 
+| **LivenessProbe**                                                           |
 | `livenessProbe.httpGet.path`                                                | Liveness Probe settings                                                                                            | `/`                             |
 | `livenessProbe.httpGet.port`                                                | Liveness Probe settings                                                                                            | `http`                          |
 | `livenessProbe.initialDelaySeconds`                                         | Liveness Probe settings                                                                                            | `60`                            |

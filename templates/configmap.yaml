@@ -1,3 +1,4 @@
+{{- if .Values.swaggerui.jsonPath }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -10,3 +11,4 @@ metadata:
     heritage: {{ .Release.Service | quote }}
 data:
   conf.json: {{ .Files.Get (printf "%s" .Values.swaggerui.jsonPath) | toJson | indent 4}}
+{{- end }}
