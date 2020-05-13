@@ -16,7 +16,7 @@ swaggerui :
     url: http://www.google.be
     description: "helm-online"
 
-## Set the number of replicas on the swaggerui deployment.
+## Configure the deployment resource 
 ##
 deployment:
   replicas: 1
