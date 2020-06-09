@@ -9,7 +9,7 @@ This [Helm](https://github.com/kubernetes/helm) chart installs [swagger-ui](http
 ## Prerequisites
 
 - Kubernetes cluster 1.10+
-- Helm 2.8.0+
+- Helm 3.0.0+
 - PV provisioner support in the underlying infrastructure.
 
 ## Installation
