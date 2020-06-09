@@ -13,7 +13,7 @@ metadata:
 {{- end }}
 spec:
   type: "{{ .Values.service.type }}"
-  clusterIP: "{{ .Values.service.clusterIP }}"
+  {{ with .Values.service.clusterIP }}clusterIP: {{ . | quote }}{{ end }}
   {{- if .Values.service.externalIPs }}
   externalIPs:
     {{- toYaml .Values.service.externalIPs | nindent 4 }}
