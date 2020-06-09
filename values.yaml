@@ -16,6 +16,14 @@ swaggerui :
     url: http://www.google.be
     description: "helm-online"
 
+## Configure the deployment resource 
+##
+deployment:
+  replicas: 1
+  extraEnv:
+  # - name: BASE_URL
+  #   value: /swagger
+
 ## Expose the swagger-ui service and
 ## Provides options for the service so chart users have the full choice
 ## Set the service type and the port to serve it.

@@ -9,7 +9,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas | default 1 }}
   selector:
     matchLabels:
       app: {{ template "swagger-ui.name" . }}
@@ -32,6 +32,9 @@ spec:
           command: ["/bin/sh","-c"]
           args : {{ (printf "[\"mkdir /api-doc && wget %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }} {{ end }}
           env:
+          {{- with .Values.deployment.extraEnv }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
           - name: SWAGGER_JSON
             value: /api-doc/openapi.json
           livenessProbe:
