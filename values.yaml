@@ -6,6 +6,8 @@ image:
   tag: v3.24.3
   pullPolicy: IfNotPresent
 
+imagePullSecrets: []
+
 ## Used to provide the location of the openapi.json file.
 ## If jsonPath is empty the chart try to get a json file at the jsonUrl address. 
 ## The server fields have to use to add a custom server.

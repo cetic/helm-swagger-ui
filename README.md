@@ -58,6 +58,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `image.repository`                                                          | swagger-ui Image name                                                                                              | `swaggerapi/swagger-ui`         |
 | `image.tag`                                                                 | swagger-ui Image tag                                                                                               | `v3.24.3`                      |
 | `image.pullPolicy`                                                          | swagger-ui Image pull policy                                                                                       | `IfNotPresent`                  |
+| `imagePullSecrets`                                                          | list of names of secrets containing docker registry credentials                                                    | `[]`                  |
 | **Swagger-UI**                                                              |
 | `swaggerui.jsonPath`                                                        | location of the configuration json file file                                                                       | `""`                            |
 | `swaggerui.jsonUrl`                                                         | location of the configuration json file file                                                                       | `http://petstore.swagger.io/v2/swagger.json` |
