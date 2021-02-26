@@ -58,12 +58,12 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `image.repository`                                                          | swagger-ui Image name                                                                                              | `swaggerapi/swagger-ui`         |
 | `image.tag`                                                                 | swagger-ui Image tag                                                                                               | `v3.24.3`                      |
 | `image.pullPolicy`                                                          | swagger-ui Image pull policy                                                                                       | `IfNotPresent`                  |
-| `imagePullSecrets`                                                          | list of names of secrets containing docker registry credentials | `[]`                  |
-| **swagger-ui**                                                              |
-| `swagger-ui.jsonPath`                                                       | location of the configuration json file file                                                                       | `""`                            |
-| `swagger-ui.jsonUrl`                                                        | location of the configuration json file file                                                                       | `http://petstore.swagger.io/v2/swagger.json` |
-| `swagger-ui.server.url`                                                     | Url of a custom server                                                                                             | `"http://www.google.be"`        |
-| `swagger-ui.server.description`                                             | descripton of a custom server                                                                                      | `"helm-online"`                 |
+| `imagePullSecrets`                                                          | list of names of secrets containing docker registry credentials                                                    | `[]`                  |
+| **Swagger-UI**                                                              |
+| `swaggerui.jsonPath`                                                        | location of the configuration json file file                                                                       | `""`                            |
+| `swaggerui.jsonUrl`                                                         | location of the configuration json file file                                                                       | `http://petstore.swagger.io/v2/swagger.json` |
+| `swaggerui.server.url`                                                      | Url of a custom server                                                                                             | `"http://www.google.be"`        |
+| `swaggerui.server.description`                                              | description of a custom server                                                                                      | `"helm-online"`                 |
 | **Deployment**                                                              |
 | `deployment.replicas`                                                       | Number of replicas                                                                                                 | `1`                             |
 | `deployment.extraEnv`                                                       | Additional environment variable                                                                                    | ``                              |
