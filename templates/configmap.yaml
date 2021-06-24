@@ -10,5 +10,6 @@ metadata:
     release: {{ .Release.Name | quote }}
     heritage: {{ .Release.Service | quote }}
 data:
-  conf.json: {{ .Files.Get (printf "%s" .Values.swaggerui.jsonPath) | toJson | indent 4}}
+  conf.json: |-
+    {{- .Files.Get .Values.swaggerui.jsonPath | nindent 4 -}}
 {{- end }}
