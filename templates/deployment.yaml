@@ -34,7 +34,7 @@ spec:
             name: swagger-config
           {{ else }}
           command: ["/bin/sh","-c"]
-          args : {{ (printf "[\"mkdir /api-doc && wget %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }} {{ end }}
+          args : {{ (printf "[\"mkdir /api-doc && wget --no-check-certificate %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }} {{ end }}
           env:
           {{- with .Values.deployment.extraEnv }}
           {{- toYaml . | nindent 10 }}
@@ -48,6 +48,8 @@ spec:
           - name: http
             containerPort: 8080
             protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       {{- if .Values.swaggerui.jsonPath }}
       volumes:
         - name: swagger-config
