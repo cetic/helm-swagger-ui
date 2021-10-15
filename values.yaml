@@ -25,6 +25,7 @@ deployment:
   extraEnv:
   # - name: BASE_URL
   #   value: /swagger
+  jsonNoCheckCertificate: false
 
 ## Expose the swagger-ui service and
 ## Provides options for the service so chart users have the full choice
