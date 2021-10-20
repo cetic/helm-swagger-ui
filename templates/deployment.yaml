@@ -34,7 +34,12 @@ spec:
             name: swagger-config
           {{ else }}
           command: ["/bin/sh","-c"]
-          args : {{ (printf "[\"mkdir /api-doc && wget --no-check-certificate %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }} {{ end }}
+          {{- if .Values.deployment.jsonNoCheckCertificate }}
+          args : {{ (printf "[\"mkdir /api-doc && wget --no-check-certificate %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }} 
+          {{- else }}
+          args : {{ (printf "[\"mkdir /api-doc && wget %s -O /api-doc/openapi.json && apk update && apk add jq && jq '.servers += [{\\\"url\\\":\\\"%s\\\",\\\"description\\\":\\\"%s\\\"}]' /api-doc/openapi.json > json.tmp && mv json.tmp /api-doc/openapi.json && /usr/share/nginx/run.sh\"]" .Values.swaggerui.jsonUrl .Values.swaggerui.server.url .Values.swaggerui.server.description ) }}
+          {{- end }}
+          {{- end }}
           env:
           {{- with .Values.deployment.extraEnv }}
           {{- toYaml . | nindent 10 }}

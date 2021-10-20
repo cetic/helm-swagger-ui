@@ -34,7 +34,7 @@ The following items can be set via `--set` flag during installation or configure
 
 ### Install the chart
 
-Install the swagger-ui helm chart with a release name (`my-release`):
+Install the swagger-ui helm chart with a release name `my-release`:
 
 ```bash
 helm install --name my-release cetic/swaggerui
@@ -67,6 +67,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | **Deployment**                                                              |
 | `deployment.replicas`                                                       | Number of replicas                                                                                                 | `1`                             |
 | `deployment.extraEnv`                                                       | Additional environment variable                                                                                    | ``                              |
+| `deployment.jsonNoCheckCertificate`                                         | Enable/Disable certificate check                                                                                   | `false`                         |
 | **Service**                                                                 |
 | `service.type`                                                              | Type of service for swagger-ui frontend                                                                            | `NodePort`                      |
 | `service.port`                                                              | Port to expose service                                                                                             | `8080`                          |

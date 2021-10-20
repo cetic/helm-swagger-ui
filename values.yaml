@@ -22,6 +22,7 @@ swaggerui :
 ##
 deployment:
   replicas: 1
+  jsonNoCheckCertificate: false
   extraEnv:
   # - name: BASE_URL
   #   value: /swagger
