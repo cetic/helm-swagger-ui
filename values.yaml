@@ -25,6 +25,7 @@ deployment:
   extraEnv:
   # - name: BASE_URL
   #   value: /swagger
+  jsonNoCheckCertificate: false
 
 ## Expose the swagger-ui service and
 ## Provides options for the service so chart users have the full choice
@@ -78,13 +79,6 @@ livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 30
   timeoutSeconds: 10
-
-autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
