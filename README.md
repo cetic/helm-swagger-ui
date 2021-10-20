@@ -34,7 +34,7 @@ The following items can be set via `--set` flag during installation or configure
 
 ### Install the chart
 
-Install the swagger-ui helm chart with a release name `my-release`:
+Install the swagger-ui helm chart with a release name (`my-release`):
 
 ```bash
 helm install --name my-release cetic/swaggerui
