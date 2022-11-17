@@ -17,6 +17,7 @@ swaggerui :
   server :
     url: http://www.google.be
     description: "helm-online"
+  pullCommand: ""
 
 ## Configure the deployment resource 
 ##

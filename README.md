@@ -64,6 +64,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `swaggerui.jsonUrl`                                                         | location of the configuration json file file                                                                       | `http://petstore.swagger.io/v2/swagger.json` |
 | `swaggerui.server.url`                                                      | Url of a custom server                                                                                             | `"http://www.google.be"`        |
 | `swaggerui.server.description`                                              | description of a custom server                                                                                      | `"helm-online"`                 |
+| `swaggerui.pullCommand`                                                     | Custom command to pull and parse openapi schema                                                                    | `""`                            |
 | **Deployment**                                                              |
 | `deployment.replicas`                                                       | Number of replicas                                                                                                 | `1`                             |
 | `deployment.extraEnv`                                                       | Additional environment variable                                                                                    | ``                              |
