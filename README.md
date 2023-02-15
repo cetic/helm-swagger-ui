@@ -1,6 +1,7 @@
 # Helm Chart for swagger-ui
 
 [![CircleCI](https://circleci.com/gh/cetic/helm-swagger-ui.svg?style=svg)](https://circleci.com/gh/cetic/helm-swagger-ui/tree/master) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![version](https://img.shields.io/github/tag/cetic/helm-swagger-ui.svg?label=release)
+![test](https://github.com/cetic/helm-swagger-ui/actions/workflows/basic_test.yml/badge.svg)
 
 ## Introduction
 
