@@ -46,7 +46,7 @@ helm install my-release cetic/swaggerui
 To uninstall/delete the `my-release` deployment:
 
 ```bash
-helm delete --purge my-release
+helm delete my-release
 ```
 
 ## Configuration
