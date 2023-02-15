@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  example:
+    name: Minikube installation - Basic test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Minikube
+        uses: manusa/actions-setup-minikube@v2.7.2
+        with:
+          minikube version: 'v1.28.0'
+          kubernetes version: 'v1.25.4'
+          github token: ${{ secrets.GITHUB_TOKEN }}
+      #- run: minikube addons list
+      #- name: Interact with the cluster
+      #  run: kubectl get nodes
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Swagger-ui
+        run: helm install swagger-ui .
+      - name: Check deployment status
+        run: |
+          kubectl rollout status --watch deployment/swagger-ui-swaggerui --timeout=5m
+        
+      # this test would be nice but it does not work in its current state
+      #- name: Check web application responds
+      #  run: |
+      #    curl -sk http://$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}"):$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services swagger-ui-swaggerui) | \
+      #      grep 'Swagger UI'
