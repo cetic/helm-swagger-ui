@@ -46,7 +46,5 @@ jobs:
       #    exit 1
       - name: Check web application responds
         run: |
-          export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services swagger-ui-swaggerui)
-          export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
-          curl -sk http://$NODE_IP:$NODE_PORT | \
+          curl -sk http://$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}"):$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services swagger-ui-swaggerui) | \
             grep 'Swagger UI'
